@@ -12,7 +12,7 @@ Click the follow image to view this tutorial on Youtube.
 # Prepare RPI
 Install the lastest 64bit Raspberry Pi OS with desktop and update the system. 
 
-Before making an upgrade we will put on hold the installation of libqt6* libraries, these libraries can conflict with our qt creator installation that will be done later. 
+Before making an upgrade we will put on hold the installation of libqt6* libraries. Tests have shown that these libraries conflict with the Qt Creator installation planned for later. 
 
 Note : (During the upgrade you will be asked (Y/N) whether new packages will be installed. If a new package Qt6 is proposed, abort the installation and add it to the sudo apt-mark hold as listed below)
 ```
@@ -338,7 +338,8 @@ Set up **Qt Versions**.
 
 Set up **Kits**.
 ![image](https://github.com/MuyePan/CrossCompileQtForRpi/assets/136073506/93e04b07-7cbc-43d6-a17c-53fe6d272de9)
-<img width="1250" height="787" alt="Kits_cmake_conf" src="https://github.com/user-attachments/assets/64a6f348-2338-45c6-8e86-401004d3803a" />
+<img width="1250" height="787" alt="Kits_RPI" src="https://github.com/user-attachments/assets/d0f60579-8adc-47ec-86da-92af22361abf" />
+
 
 On **CMake Configuration** option, click Change and add follow commands. **You should modify the following commands to your needs.**
 ```
@@ -368,6 +369,7 @@ Under **Run** section, on **X11 Forwarding** check **Forward to local display** 
 
 Under **Environment** section, click **Details** to expand the environment option. Click **Add**, then on **Variable** column type **LD_LIBRARY_PATH**. On the **Value** column, type **:/usr/local/qt6/lib/**.
 ![image](https://github.com/MuyePan/CrossCompileQtForRpi/assets/136073506/059f275c-bfa4-4357-b4b6-82880b5c1054)
+<img width="1442" height="724" alt="Environment_Variable" src="https://github.com/user-attachments/assets/86dfc3fb-54c5-42c7-986c-f0e4ed465911" />
 
 Run.
 
