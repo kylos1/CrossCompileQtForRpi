@@ -76,21 +76,21 @@ Folder CMake is not need any more. You can delete it.
 ## Build gcc as a cross compiler
 Download necessary source code. **You should modify the following commands to your needs.**
 For the time I make this page, they are:
-* gcc 10.3.0(gcc version 10.2.1 does not exist and use the closest one)
-* binutils 2.35.2(ld version)
-* glibc 2.31(ldd version)
+* gcc 12.2.0(gcc version 12.2.0 does not exist and use the closest one)
+* binutils 2.40 (ld version)
+* glibc 2.36 (ldd version)
 ```
 cd ~
 mkdir gcc_all && cd gcc_all
-wget https://ftpmirror.gnu.org/binutils/binutils-2.35.2.tar.bz2
-wget https://ftpmirror.gnu.org/glibc/glibc-2.31.tar.bz2
-wget https://ftpmirror.gnu.org/gcc/gcc-10.3.0/gcc-10.3.0.tar.gz
+wget https://ftpmirror.gnu.org/binutils/binutils-2.40.tar.bz2
+wget https://ftpmirror.gnu.org/glibc/glibc-2.36.tar.bz2
+wget https://ftpmirror.gnu.org/gcc/gcc-12.2.0/gcc-12.2.0.tar.gz
 git clone --depth=1 https://github.com/raspberrypi/linux
-tar xf binutils-2.35.2.tar.bz2
-tar xf glibc-2.31.tar.bz2
-tar xf gcc-10.3.0.tar.gz
+tar xf binutils-2.40.tar.bz2
+tar xf glibc-2.36.tar.bz2
+tar xf gcc-12.2.0.tar.gz
 rm *.tar.*
-cd gcc-10.3.0
+cd gcc-12.2.0
 contrib/download_prerequisites
 ```
 Make a folder for the compiler installation.
@@ -110,11 +110,11 @@ Build Binutils. **You should modify the following commands to your needs.**
 ```
 cd ~/gcc_all
 mkdir build-binutils && cd build-binutils
-../binutils-2.35.2/configure --prefix=/opt/cross-pi-gcc --target=aarch64-linux-gnu --with-arch=armv8 --disable-multilib
+../binutils-2.40/configure --prefix=/opt/cross-pi-gcc --target=aarch64-linux-gnu --with-arch=armv8 --disable-multilib
 make -j 8
 make install
 ```
-Edit gcc-10.3.0/libsanitizer/asan/asan_linux.cpp. Add following piece of code.
+Edit gcc-12.2.0/libsanitizer/asan/asan_linux.cpp. Add following piece of code.
 ```
 #ifndef PATH_MAX
 #define PATH_MAX 4096
@@ -125,7 +125,7 @@ Do a partial build of gcc. **You should modify the following commands to your ne
 ```
 cd ~/gcc_all
 mkdir build-gcc && cd build-gcc
-../gcc-10.3.0/configure --prefix=/opt/cross-pi-gcc --target=aarch64-linux-gnu --enable-languages=c,c++ --disable-multilib
+../gcc-12.2.0/configure --prefix=/opt/cross-pi-gcc --target=aarch64-linux-gnu --enable-languages=c,c++ --disable-multilib
 make -j8 all-gcc
 make install-gcc
 ```
@@ -133,7 +133,14 @@ Partially build Glibc. **You should modify the following commands to your needs.
 ```
 cd ~/gcc_all
 mkdir build-glibc && cd build-glibc
-../glibc-2.31/configure --prefix=/opt/cross-pi-gcc/aarch64-linux-gnu --build=$MACHTYPE --host=aarch64-linux-gnu --target=aarch64-linux-gnu --with-headers=/opt/cross-pi-gcc/aarch64-linux-gnu/include --disable-multilib libc_cv_forced_unwind=yes
+../glibc-2.36/configure \
+  --prefix=/opt/cross-pi-gcc/aarch64-linux-gnu \
+  --build=$MACHTYPE \
+  --host=aarch64-linux-gnu \
+  --target=aarch64-linux-gnu \
+  --with-headers=/opt/cross-pi-gcc/aarch64-linux-gnu/include \
+  --disable-multilib \
+  libc_cv_forced_unwind=yes
 make install-bootstrap-headers=yes install-headers
 make -j8 csu/subdir_lib
 install csu/crt1.o csu/crti.o csu/crtn.o /opt/cross-pi-gcc/aarch64-linux-gnu/lib
