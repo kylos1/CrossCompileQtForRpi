@@ -10,7 +10,9 @@ Click the follow image to view this tutorial on Youtube.
 - Localization https://youtu.be/JtTtzYZ_Nk0
 
 # Prepare RPI
-Install the lastest 64bit Raspberry Pi OS with desktop and update the system. Before making an upgrade we will put on hold the installation of libqt6* libraries, these libraries. 
+Install the lastest 64bit Raspberry Pi OS with desktop and update the system. 
+
+Before making an upgrade we will put on hold the installation of libqt6* libraries, these libraries can conflict with our qt creator installation that will be done later. 
 
 Note : (During the upgrade you will be asked (Y/N) whether new packages will be installed. If a new package Qt6 is proposed, abort the installation and add it to the sudo apt-mark hold as listed below)
 ```
@@ -190,12 +192,13 @@ cmake --install .
 Binaries will be in $HOME/qt6/host
 ### Build Qt6 for rpi
 copy and paste a few folders from rpi using rsync through SSH. **You should modify the following commands to your needs.**
+Name of your board = raspberrypi or its ip address 192.168.6.218
 ```
 cd ~
-rsync -avz --rsync-path="sudo rsync" pi@192.168.6.218:/usr/include rpi-sysroot/usr
-rsync -avz --rsync-path="sudo rsync" pi@192.168.6.218:/lib rpi-sysroot
-rsync -avz --rsync-path="sudo rsync" pi@192.168.6.218:/usr/lib rpi-sysroot/usr 
-rsync -avz --rsync-path="sudo rsync" pi@192.168.6.218:/opt/vc rpi-sysroot/opt
+rsync -avz --rsync-path="sudo rsync" pi@raspberry.local:/usr/include rpi-sysroot/usr
+rsync -avz --rsync-path="sudo rsync" pi@raspberry.local:/lib rpi-sysroot
+rsync -avz --rsync-path="sudo rsync" pi@raspberry.local:/usr/lib rpi-sysroot/usr 
+rsync -avz --rsync-path="sudo rsync" pi@raspberry.local:/opt/vc rpi-sysroot/opt
 ```
 Create a file named toolchain.cmake in $HOME/qt6.
 ```
