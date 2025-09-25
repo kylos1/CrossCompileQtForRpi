@@ -10,9 +10,12 @@ Click the follow image to view this tutorial on Youtube.
 - Localization https://youtu.be/JtTtzYZ_Nk0
 
 # Prepare RPI
-Install the lastest 64bit Raspberry Pi OS with desktop and update the system.
+Install the lastest 64bit Raspberry Pi OS with desktop and update the system. Before making an upgrade we will put on hold the installation of libqt6* libraries, these libraries. 
+
+Note : (During the upgrade you will be asked (Y/N) whether new packages will be installed. If a new package Qt6 is proposed, abort the installation and add it to the sudo apt-mark hold as listed below)
 ```
 sudo apt update
+sudo apt-mark hold libqt6core6 libqt6dbus6 libqt6gui6 libqt6network6 libqt6opengl6 libqt6openglwidgets6 libqt6widgets6 qt6-gtk-platformtheme qt6-qpa-plugins qt6-translations-l10n
 sudo apt upgrade
 sudo reboot
 ```
@@ -22,6 +25,12 @@ sudo apt-get install libboost-all-dev libudev-dev libinput-dev libts-dev libmtde
 ```
 ```
 sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libx11-dev freetds-dev libsqlite3-dev libpq-dev libiodbc2-dev firebird-dev libxext-dev libxcb1 libxcb1-dev libx11-xcb1 libx11-xcb-dev libxcb-keysyms1 libxcb-keysyms1-dev libxcb-image0 libxcb-image0-dev libxcb-shm0 libxcb-shm0-dev libxcb-icccm4 libxcb-icccm4-dev libxcb-sync1 libxcb-sync-dev libxcb-render-util0 libxcb-render-util0-dev libxcb-xfixes0-dev libxrender-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-glx0-dev libxi-dev libdrm-dev libxcb-xinerama0 libxcb-xinerama0-dev libatspi2.0-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxss-dev libxtst-dev libpci-dev libcap-dev libxrandr-dev libdirectfb-dev libaudio-dev libxkbcommon-x11-dev gdbserver
+```
+Standard UTF-8 for Qt creator compatibility
+```
+sudo locale-gen en_GB.UTF-8
+sudo update-locale LANG=en_GB.UTF-8 LC_ALL=en_GB.UTF-8
+sudo reboot
 ```
 Make a folder for qt6 installation.
 ```
