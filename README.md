@@ -42,9 +42,8 @@ Grant full access to the fold used for the deployment from Qt Creator.
 ```
 sudo chmod 777 /usr/local/bin
 ```
-Remember versions of gcc(10.2.1), ld(2.35.2) and ldd(2.31). Source code of the same version should be downloaded to build cross compiler later.
+Remember versions of gcc(12.2.0), ld(2.40) and ldd(2.36). Source code of the same version should be downloaded to build cross compiler later.
 
-![image](https://github.com/MuyePan/CrossCompileQtForRpi/assets/136073506/ba2f1848-0c5c-426d-8d3f-1420931637bd)
 <img width="743" height="380" alt="gcc_ld_ldd" src="https://github.com/user-attachments/assets/6bfa8731-fa5c-4dbc-8da8-07363838abef" />
 
 Append following piece of code to the end of ~/.bashrc.
@@ -317,27 +316,21 @@ Set up **Compilers**.
 
 
 Set up **Debuggers**.
-![image](https://github.com/MuyePan/CrossCompileQtForRpi/assets/136073506/f75adf17-b8eb-4149-a5fc-cf59978aa3d9)
 <img width="1247" height="790" alt="Debuggers" src="https://github.com/user-attachments/assets/eb328b47-1cd4-448f-a432-c2274bcc66e3" />
 
-
 Set up **Devices**.
-![image](https://github.com/MuyePan/CrossCompileQtForRpi/assets/136073506/57609ea4-6901-41a8-8264-c6bb7aeac844)
 <img width="1250" height="787" alt="Devices" src="https://github.com/user-attachments/assets/6468cafd-b22b-4ebf-b78f-9e1eabc02a52" />
 
 Click **Deploy Public Key...** to deploy the key. Create one if not existed.
 
 Test the device.
-![image](https://github.com/MuyePan/CrossCompileQtForRpi/assets/136073506/9883e600-7963-48e3-98fc-dc3f2e651bff)
 <img width="1247" height="790" alt="Device_test" src="https://github.com/user-attachments/assets/3d77b6af-1dcf-4fef-bec5-39c6c2a2420f" />
 
 
 Set up **Qt Versions**.
-![image](https://github.com/MuyePan/CrossCompileQtForRpi/assets/136073506/6c43b6f0-a256-4d2d-86f6-80bb393602af)
 <img width="1250" height="787" alt="Qt_versions" src="https://github.com/user-attachments/assets/55fae848-eee2-4b4c-a762-0a082124e3b6" />
 
 Set up **Kits**.
-![image](https://github.com/MuyePan/CrossCompileQtForRpi/assets/136073506/93e04b07-7cbc-43d6-a17c-53fe6d272de9)
 <img width="1250" height="787" alt="Kits_RPI" src="https://github.com/user-attachments/assets/d0f60579-8adc-47ec-86da-92af22361abf" />
 
 
@@ -345,7 +338,6 @@ On **CMake Configuration** option, click Change and add follow commands. **You s
 ```
 -DCMAKE_TOOLCHAIN_FILE:UNINITIALIZED=/home/pmy/qt6/pi/lib/cmake/Qt6/qt.toolchain.cmake
 ```
-![image](https://github.com/MuyePan/CrossCompileQtForRpi/assets/136073506/d7c4600a-7058-4541-bdfd-ce184e7fd94c)
 <img width="1250" height="787" alt="Kits_cmake_conf" src="https://github.com/user-attachments/assets/ae4c3807-56e2-4e0d-89a0-63ac8876933d" />
 
 
@@ -364,11 +356,9 @@ install(TARGETS HelloWorld
 ```
 Goto **Projects**
 Under **Run** section, on **X11 Forwarding** check **Forward to local display** and input :0 to the text field. 
-![image](https://github.com/MuyePan/CrossCompileQtForRpi/assets/136073506/b396954b-fb04-48ae-a3c4-8ae67178513e)
 <img width="1509" height="703" alt="Project_run_config" src="https://github.com/user-attachments/assets/584dab5d-d22f-4712-af5a-e4c688093210" />
 
 Under **Environment** section, click **Details** to expand the environment option. Click **Add**, then on **Variable** column type **LD_LIBRARY_PATH**. On the **Value** column, type **:/usr/local/qt6/lib/**.
-![image](https://github.com/MuyePan/CrossCompileQtForRpi/assets/136073506/059f275c-bfa4-4357-b4b6-82880b5c1054)
 <img width="1442" height="724" alt="Environment_Variable" src="https://github.com/user-attachments/assets/86dfc3fb-54c5-42c7-986c-f0e4ed465911" />
 
 Run.
