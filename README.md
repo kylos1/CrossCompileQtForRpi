@@ -195,10 +195,10 @@ copy and paste a few folders from rpi using rsync through SSH. **You should modi
 For this example the name of the board is raspberrypi 
 ```
 cd ~
-rsync -avz --rsync-path="sudo rsync" pi@raspberry.local:/usr/include rpi-sysroot/usr
-rsync -avz --rsync-path="sudo rsync" pi@raspberry.local:/lib rpi-sysroot
-rsync -avz --rsync-path="sudo rsync" pi@raspberry.local:/usr/lib rpi-sysroot/usr 
-rsync -avz --rsync-path="sudo rsync" pi@raspberry.local:/opt/vc rpi-sysroot/opt
+rsync -avz --rsync-path="sudo rsync" pi@raspberrypi.local:/usr/include rpi-sysroot/usr
+rsync -avz --rsync-path="sudo rsync" pi@raspberrypi.local:/lib rpi-sysroot
+rsync -avz --rsync-path="sudo rsync" pi@raspberrypi.local:/usr/lib rpi-sysroot/usr 
+rsync -avz --rsync-path="sudo rsync" pi@raspberrypi.local:/opt/vc rpi-sysroot/opt
 ```
 Create a file named toolchain.cmake in $HOME/qt6.
 ```
